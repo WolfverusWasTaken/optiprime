@@ -10,24 +10,60 @@ export default function HomePage() {
     return (
         <div className="flex flex-col gap-24 lg:gap-40 pb-20">
 
-            {/* 1. HERO SECTION (Wireframe) */}
-            <section id="hero" className="container mx-auto px-6 lg:px-12 pt-12 lg:pt-24 text-center">
-                <div className="max-w-4xl mx-auto space-y-6">
-                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-black uppercase tracking-tighter leading-none">
-                        TEAM <span className="text-sit-red">OTIPRIME</span>
-                    </h1>
+            {/* 1. HERO SECTION (Dynamic Triptych Collage) */}
+            <section id="hero" className="w-full min-h-[85vh] relative flex flex-col items-center justify-center overflow-hidden">
 
-                    <p className="text-lg md:text-xl text-white/50 font-medium max-w-2xl mx-auto leading-relaxed uppercase tracking-tight">
+                {/* 3-Panel Collage Background */}
+                <div className="absolute inset-0 grid grid-cols-1 md:grid-cols-3 z-0">
+                    <div className="relative overflow-hidden">
+                        <div
+                            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
+                            style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1500&auto=format&fit=crop")', clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0% 100%)' }}
+                        />
+                        <div className="absolute inset-0 bg-black/40" />
+                    </div>
+                    <div className="relative overflow-hidden">
+                        <div
+                            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
+                            style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1500&auto=format&fit=crop")', clipPath: 'polygon(15% 0, 100% 0, 85% 100%, -15% 100%)' }}
+                        />
+                        <div className="absolute inset-0 bg-black/50" />
+                    </div>
+                    <div className="relative overflow-hidden">
+                        <div
+                            className="absolute inset-0 bg-cover bg-center transition-transform duration-700 hover:scale-105"
+                            style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1500&auto=format&fit=crop")', clipPath: 'polygon(15% 0, 100% 0, 100% 100%, -15% 100%)' }}
+                        />
+                        <div className="absolute inset-0 bg-black/40" />
+                    </div>
+
+                    {/* Jagged Divider Overlays */}
+                    <div className="absolute top-0 left-1/3 w-8 h-full bg-black z-10 -translate-x-1/2 skew-x-[-15deg] shadow-[0_0_50px_rgba(0,0,0,0.8)] border-x border-white/5" />
+                    <div className="absolute top-0 left-2/3 w-8 h-full bg-black z-10 -translate-x-1/2 skew-x-[-15deg] shadow-[0_0_50px_rgba(0,0,0,0.8)] border-x border-white/5" />
+                </div>
+
+                {/* Content Overlay */}
+                <div className="max-w-5xl mx-auto px-6 lg:px-12 text-center relative z-20 space-y-8">
+                    <div className="space-y-4">
+
+                        <h1 className="text-7xl md:text-9xl font-black uppercase tracking-tighter leading-none drop-shadow-[0_10px_10px_rgba(0,0,0,0.8)]">
+                            TEAM <span className="text-sit-red">OTIPRIME</span>
+                        </h1>
+                    </div>
+
+                    <p className="text-lg md:text-2xl text-white font-medium max-w-2xl mx-auto leading-relaxed uppercase tracking-tight opacity-80 decoration-sit-red decoration-2">
                         We are Otiprime, sample paragraph
                     </p>
 
-                    <div className="flex flex-wrap justify-center gap-4 pt-6">
-                        {/* Primary Action Button */}
-                        <button className="px-8 py-3.5 bg-sit-red hover:bg-sit-red/90 text-white font-bold uppercase tracking-wider rounded-sm transition-all flex items-center gap-2 group">
-                            ACCESS PROJECTS <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    <div className="flex justify-center pt-8">
+                        <button className="group px-10 py-4 bg-sit-red hover:bg-white text-white hover:text-black font-black uppercase tracking-widest transition-all duration-300 flex items-center gap-3">
+                            ACCESS PROJECTS <ArrowRight className="w-5 h-5 group-hover:translate-x-2 transition-transform" />
                         </button>
                     </div>
                 </div>
+
+                {/* Bottom Gradient Fade */}
+                <div className="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-black to-transparent z-10" />
             </section>
 
             {/* 2. STATS/METRICS (Wireframe Grid) */}
@@ -51,11 +87,6 @@ export default function HomePage() {
                     ))}
                 </div>
             </section>
-
-
-
-
-
         </div>
     );
 }
