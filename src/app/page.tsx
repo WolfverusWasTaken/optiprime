@@ -52,61 +52,7 @@ export default function HomePage() {
                 </div>
             </section>
 
-            {/* 3. MAIN CONTENT / PROJECT GALLERY (Wireframe Template) */}
-            <section id="projects" className="container mx-auto px-6 lg:px-12 space-y-12">
-                <div className="flex justify-between items-end border-b border-white/10 pb-6">
-                    <div className="space-y-2">
-                        <h2 className="text-3xl font-black uppercase tracking-tighter">PROJECT MODULES</h2>
-                        <p className="text-sm text-white/40 uppercase tracking-widest font-bold">Active engineering workstreams</p>
-                    </div>
-                    <button className="text-[10px] text-white/40 hover:text-sit-red font-bold uppercase tracking-[0.2em] transition-colors">
-                        EXPAND ALL
-                    </button>
-                </div>
 
-                {/* Placeholder for project gallery */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    {/* Card 1 */}
-                    <div className="space-y-6">
-                        <div className="aspect-video w-full bg-[#0a0a0a] border border-white/5 flex items-center justify-center relative group overflow-hidden">
-                            {/* SVG/Pattern inside placeholder */}
-                            <div className="absolute inset-0 opacity-10 bg-dot-grid" />
-                            <span className="text-white/10 italic text-xl uppercase font-black tracking-widest group-hover:text-sit-red/20 transition-colors">
-                                Insert Project Media Here
-                            </span>
-                            <div className="absolute top-4 left-4 h-6 w-24 bg-sit-red/80 px-2 flex items-center text-[10px] font-black uppercase text-white">
-                                LATEST MOD
-                            </div>
-                        </div>
-                        <div className="space-y-3">
-                            <h3 className="text-xl font-bold uppercase tracking-tight">System Integration A</h3>
-                            <div className="h-4 w-full bg-white/5 animate-pulse rounded" />
-                            <div className="h-4 w-3/4 bg-white/5 animate-pulse rounded" />
-                            <button className="text-xs text-sit-red font-black uppercase tracking-widest mt-4 flex items-center gap-1 hover:underline">
-                                READ SPECS <ArrowRight className="w-3 h-3" />
-                            </button>
-                        </div>
-                    </div>
-
-                    {/* Card 2 */}
-                    <div className="space-y-6">
-                        <div className="aspect-video w-full bg-[#0a0a0a] border border-white/5 flex items-center justify-center relative group overflow-hidden">
-                            <div className="absolute inset-0 opacity-10 bg-dot-grid" />
-                            <span className="text-white/10 italic text-xl uppercase font-black tracking-widest group-hover:text-sit-red/20 transition-colors">
-                                Insert Project Media Here
-                            </span>
-                        </div>
-                        <div className="space-y-3">
-                            <h3 className="text-xl font-bold uppercase tracking-tight">System Integration B</h3>
-                            <div className="h-4 w-full bg-white/5 animate-pulse rounded" />
-                            <div className="h-4 w-1/2 bg-white/5 animate-pulse rounded" />
-                            <button className="text-xs text-sit-red font-black uppercase tracking-widest mt-4 flex items-center gap-1 hover:underline">
-                                READ SPECS <ArrowRight className="w-3 h-3" />
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </section>
 
 
 
