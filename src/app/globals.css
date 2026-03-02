@@ -3,14 +3,29 @@
 @tailwind utilities;
 
 :root {
-  --background: #000000;
-  --foreground: #ffffff;
-  --sit-red: #E31D2B;
+  --background: #0B1C2D;
+  --section-alt: #132F4C;
+  --card-bg: #1E293B;
+  --foreground: #F1F5F9;
+  --soft-white: #F1F5F9;
+  --light-grey: #CBD5E1;
+  --medium-grey: #64748B;
+
+  --prime-blue: #0057FF;
+  --electric-blue: #1E90FF;
+  --cyan-highlight: #00C2FF;
+
+  --prime-red: #D7263D;
+  --crimson-deep: #9B1C31;
+  --energy-red: #FF2D2D;
+
+  /* Legacy mapping for backward compatibility */
+  --sit-red: #D7263D;
 }
 
 @layer base {
   body {
-    @apply bg-black text-white selection:bg-sit-red selection:text-white;
+    @apply bg-navy-deep text-soft-white selection:bg-prime-blue selection:text-white;
     background-color: var(--background);
     color: var(--foreground);
     min-height: 100vh;
@@ -19,20 +34,32 @@
 
 @layer utilities {
   .bg-dot-grid {
-    background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-image: radial-gradient(rgba(241, 245, 249, 0.05) 1px, transparent 1px);
     background-size: 40px 40px;
+  }
+
+  .glow-blue {
+    text-shadow: 0 0 10px rgba(0, 87, 255, 0.4);
+  }
+
+  .glow-red {
+    text-shadow: 0 0 10px rgba(215, 38, 61, 0.4);
   }
 }
 
-/* Base styles for the engineering dashboard feel */
+/* Updated tactical UI elements */
 .dashboard-border {
-  @apply border border-white/10 hover:border-sit-red/50 transition-colors;
+  @apply border border-soft-white/10 hover:border-prime-blue/50 transition-colors;
 }
 
 .dashboard-accent-border {
-  @apply border border-sit-red/80;
+  @apply border border-prime-blue/80;
 }
 
 .text-accent {
-  @apply text-sit-red;
+  @apply text-prime-blue;
+}
+
+.btn-primary {
+  @apply bg-energy-red hover:bg-prime-red text-white transition-colors duration-200;
 }
