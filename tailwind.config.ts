@@ -10,27 +10,30 @@ const config: Config = {
         extend: {
             colors: {
                 // Background Foundation
-                "navy-deep": "#0B1C2D",
-                "navy-steel": "#132F4C",
-                "gunmetal": "#1E293B",
+                "pure-black": "#050505",
+                "dark-gray": "#121212",
+                "gunmetal": "#1E1E1E",
 
-                // Blue Accent System (Primary)
-                "prime-blue": "#0057FF",
-                "electric-blue": "#1E90FF",
-                "cyan-highlight": "#00C2FF",
+                // Removed Blue Accent System
+                "prime-blue": "#FF0033", // Mapping to red to avoid breaking components immediately, but we will fix them
+                "electric-blue": "#FF3333",
+                "cyan-highlight": "#FFFFFF",
 
-                // Red Accent System (Controlled Energy)
-                "prime-red": "#D7263D",
-                "crimson-deep": "#9B1C31",
-                "energy-red": "#FF2D2D",
+                // Red Accent System (Primary)
+                "prime-red": "#E60000",
+                "crimson-deep": "#8B0000",
+                "energy-red": "#FF1A1A",
 
                 // Neutral Text System
                 "soft-white": "#F1F5F9",
-                "light-grey": "#CBD5E1",
-                "medium-grey": "#64748B",
+                "pure-white": "#FFFFFF",
+                "light-grey": "#A3A3A3",
+                "medium-grey": "#525252",
 
-                // Legacy reference mapping (for migration)
-                "sit-red": "#D7263D", // Mapping sit-red to prime-red
+                // Legacy reference mapping
+                "sit-red": "#E60000",
+                "navy-deep": "#050505",
+                "navy-steel": "#121212",
             },
             backgroundImage: {
                 "dot-grid": "radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px)",
