@@ -75,14 +75,9 @@ export default function SponsorSection() {
                                     className="max-h-full max-w-full object-contain"
                                 />
                             </div>
-                            <div className="text-center">
-                                <h3 className="text-sm font-semibold tracking-tight text-foreground">
-                                    {sponsor.name}
-                                </h3>
-                                <p className="mt-1 text-[10px] uppercase tracking-widest text-muted-foreground">
-                                    {sponsor.tier}
-                                </p>
-                            </div>
+                            <h3 className="text-center text-sm font-semibold tracking-tight text-foreground">
+                                {sponsor.name}
+                            </h3>
                         </Wrapper>
                     );
                 })}
