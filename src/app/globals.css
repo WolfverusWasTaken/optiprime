@@ -2,32 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #050505;
-  --section-alt: #121212;
-  --card-bg: #1E1E1E;
-  --foreground: #FFFFFF;
-  --soft-white: #F1F5F9;
-  --light-grey: #A3A3A3;
-  --medium-grey: #525252;
+@layer base {
+  :root {
+    --background: 0 0% 2%;
+    --foreground: 210 40% 96%;
 
-  --prime-blue: #E60000;
-  --electric-blue: #FF3333;
-  --cyan-highlight: #FFFFFF;
+    --card: 0 0% 7%;
+    --card-foreground: 210 40% 96%;
 
-  --prime-red: #E60000;
-  --crimson-deep: #8B0000;
-  --energy-red: #FF1A1A;
+    --popover: 0 0% 4%;
+    --popover-foreground: 210 40% 96%;
 
-  /* Legacy mapping for backward compatibility */
-  --sit-red: #E60000;
+    --primary: 0 100% 45%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 0 0% 12%;
+    --secondary-foreground: 210 40% 96%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 64%;
+
+    --accent: 0 0% 12%;
+    --accent-foreground: 210 40% 96%;
+
+    --destructive: 0 100% 45%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 15%;
+    --input: 0 0% 15%;
+    --ring: 0 100% 45%;
+
+    --radius: 0.5rem;
+
+    /* Legacy palette */
+    --soft-white: #f1f5f9;
+    --light-grey: #a3a3a3;
+    --medium-grey: #525252;
+    --prime-red: #e60000;
+    --crimson-deep: #8b0000;
+    --energy-red: #ff1a1a;
+    --sit-red: #e60000;
+  }
 }
 
 @layer base {
   body {
-    @apply text-soft-white selection:bg-prime-red selection:text-white;
-    background-color: var(--background);
-    color: var(--foreground);
+    @apply bg-background text-foreground selection:bg-prime-red selection:text-white;
     min-height: 100vh;
   }
 }
@@ -38,28 +58,7 @@
     background-size: 40px 40px;
   }
 
-  .glow-blue {
-    text-shadow: 0 0 10px rgba(230, 0, 0, 0.4);
-  }
-
   .glow-red {
     text-shadow: 0 0 10px rgba(255, 26, 26, 0.4);
   }
-}
-
-/* Updated tactical UI elements */
-.dashboard-border {
-  @apply border border-soft-white/10 hover:border-prime-red/50 transition-colors;
-}
-
-.dashboard-accent-border {
-  @apply border border-prime-red/80;
-}
-
-.text-accent {
-  @apply text-prime-red;
-}
-
-.btn-primary {
-  @apply bg-energy-red hover:bg-prime-red text-white transition-colors duration-200;
 }
