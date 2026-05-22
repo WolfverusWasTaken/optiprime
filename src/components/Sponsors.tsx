@@ -35,6 +35,44 @@ const sponsors: Sponsor[] = [
         logoSrc: "/asset/ilaser_pte_ltd_logo.jpg",
         logoClass: "bg-white p-2",
     },
+    {
+        id: "beex",
+        name: "BeeX",
+        tier: "Industry sponsor",
+        url: "#",
+        logoSrc: "/asset/beex.jpg",
+    },
+    {
+        id: "mindef",
+        name: "MINDEF",
+        tier: "Defence sponsor",
+        url: "#",
+        logoSrc: "/asset/mindef.jpg",
+        logoClass: "bg-white p-2",
+    },
+    {
+        id: "robonation",
+        name: "RoboNation",
+        tier: "Competition partner",
+        url: "#",
+        logoSrc: "/asset/robonation.jpg",
+        logoClass: "bg-white p-2",
+    },
+    {
+        id: "tgn",
+        name: "The Grit Nation",
+        tier: "Community sponsor",
+        url: "#",
+        logoSrc: "/asset/tgn.jpg",
+    },
+    {
+        id: "waterlinked",
+        name: "Water Linked",
+        tier: "Technology partner",
+        url: "#",
+        logoSrc: "/asset/waterlinked.jpg",
+        logoClass: "bg-white p-2",
+    },
 ];
 
 export default function SponsorSection() {
