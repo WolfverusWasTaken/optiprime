@@ -22,6 +22,8 @@ interface RadialOrbitalTimelineProps {
     timelineData: TimelineItem[];
     onNodeSelect?: (item: TimelineItem | null) => void;
     hideExpandedCard?: boolean;
+    backgroundImage?: string;
+    backgroundAlt?: string;
     className?: string;
 }
 
@@ -29,6 +31,8 @@ export default function RadialOrbitalTimeline({
     timelineData,
     onNodeSelect,
     hideExpandedCard = false,
+    backgroundImage,
+    backgroundAlt = "",
     className,
 }: RadialOrbitalTimelineProps) {
     const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>(
@@ -47,14 +51,19 @@ export default function RadialOrbitalTimeline({
     const orbitRef = useRef<HTMLDivElement>(null);
     const nodeRefs = useRef<Record<number, HTMLDivElement | null>>({});
 
+    const clearSelection = () => {
+        setExpandedItems({});
+        setActiveNodeId(null);
+        setPulseEffect({});
+        setAutoRotate(true);
+        onNodeSelect?.(null);
+    };
+
     const handleContainerClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (e.target === containerRef.current || e.target === orbitRef.current) {
-            setExpandedItems({});
-            setActiveNodeId(null);
-            setPulseEffect({});
-            setAutoRotate(true);
-            onNodeSelect?.(null);
-        }
+        const target = e.target as HTMLElement;
+        if (target.closest("[data-orbit-node]")) return;
+
+        clearSelection();
     };
 
     const toggleItem = (id: number) => {
@@ -160,13 +169,24 @@ export default function RadialOrbitalTimeline({
     return (
         <div
             className={cn(
-                "w-full h-full flex flex-col items-center justify-center bg-black overflow-hidden",
+                "relative w-full h-full flex flex-col items-center justify-center bg-black overflow-hidden",
                 className
             )}
             ref={containerRef}
             onClick={handleContainerClick}
         >
-            <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
+            {backgroundImage && (
+                <>
+                    <img
+                        src={backgroundImage}
+                        alt={backgroundAlt}
+                        className="pointer-events-none absolute inset-0 z-0 h-full w-full object-cover opacity-90 saturate-125"
+                    />
+                    <div className="pointer-events-none absolute inset-0 z-0 bg-background/10" />
+                    <div className="pointer-events-none absolute inset-0 z-0 bg-gradient-to-t from-background/45 via-transparent to-background/25" />
+                </>
+            )}
+            <div className="relative z-10 w-full max-w-4xl h-full flex items-center justify-center">
                 <div
                     className="absolute w-full h-full flex items-center justify-center"
                     ref={orbitRef}
@@ -175,15 +195,6 @@ export default function RadialOrbitalTimeline({
                         transform: `translate(${centerOffset.x}px, ${centerOffset.y}px)`,
                     }}
                 >
-                    <div className="absolute w-16 h-16 rounded-full bg-gradient-to-br from-red-500 via-rose-600 to-red-900 animate-pulse flex items-center justify-center z-10">
-                        <div className="absolute w-20 h-20 rounded-full border border-white/20 animate-ping opacity-70"></div>
-                        <div
-                            className="absolute w-24 h-24 rounded-full border border-white/10 animate-ping opacity-50"
-                            style={{ animationDelay: "0.5s" }}
-                        ></div>
-                        <div className="w-8 h-8 rounded-full bg-white/80 backdrop-blur-md"></div>
-                    </div>
-
                     <div className="absolute w-96 h-96 rounded-full border border-white/10"></div>
 
                     {timelineData.map((item, index) => {
@@ -209,6 +220,7 @@ export default function RadialOrbitalTimeline({
                                     nodeRefs.current[item.id] = el;
                                 }}
                                 className="absolute transition-all duration-700 cursor-pointer"
+                                data-orbit-node="true"
                                 style={nodeStyle}
                                 suppressHydrationWarning
                                 onClick={(e) => {

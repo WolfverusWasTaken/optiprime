@@ -40,7 +40,7 @@ export default function RootLayout({
                             </span>
                         </div>
                         <p className="text-xs text-muted-foreground">
-                            &copy; 2026 OptiPrime. Autonomous maritime robotics.
+                            OptiPrime was formed in February 2026.
                         </p>
                     </div>
                 </footer>

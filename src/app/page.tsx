@@ -33,6 +33,9 @@ interface Platform {
     tagline: string;
     description: string;
     image: string;
+    specs: Array<{ label: string; value: string }>;
+    techStack: string[];
+    capabilities: string[];
     components: TimelineItem[];
 }
 
@@ -44,7 +47,30 @@ const platforms: Platform[] = [
         tagline: "Aerial domain",
         description:
             "Autonomous aerial platform for high-altitude reconnaissance, situational awareness, and rapid payload deployment over open water.",
-        image: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1600&auto=format&fit=crop",
+        image: "/asset/platform-uav.png",
+        specs: [
+            { label: "Endurance", value: "38 min" },
+            { label: "Cruise", value: "72 km/h" },
+            { label: "Range", value: "18 km" },
+            { label: "Payload", value: "1.8 kg" },
+            { label: "Ceiling", value: "1,200 m" },
+            { label: "Link", value: "5 GHz mesh" },
+        ],
+        techStack: [
+            "PX4",
+            "ROS 2",
+            "Jetson Orin Nano",
+            "Stereo depth",
+            "Thermal vision",
+            "MAVLink",
+            "RTK GPS",
+            "Edge AI",
+        ],
+        capabilities: [
+            "Autonomous launch, survey pattern, and return-to-home profiles.",
+            "Visual target tracking with thermal confirmation for low-light missions.",
+            "Live telemetry handoff to USV relay nodes when shore link fades.",
+        ],
         components: [
             {
                 id: 1,
@@ -127,7 +153,30 @@ const platforms: Platform[] = [
         tagline: "Surface domain",
         description:
             "High-speed autonomous surface craft for waypoint navigation, dynamic obstacle avoidance, and coordinated multi-agent missions.",
-        image: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=1600&auto=format&fit=crop",
+        image: "/asset/platform-usv.png",
+        specs: [
+            { label: "Endurance", value: "6 hr" },
+            { label: "Sprint", value: "32 kt" },
+            { label: "Range", value: "42 nm" },
+            { label: "Payload", value: "28 kg" },
+            { label: "Sea state", value: "3" },
+            { label: "Link", value: "LTE + RF" },
+        ],
+        techStack: [
+            "ROS 2",
+            "Nav2",
+            "Marine radar",
+            "360 LiDAR",
+            "RTK GPS",
+            "CAN bus",
+            "COLREGs logic",
+            "Mission mesh",
+        ],
+        capabilities: [
+            "Waypoint patrol with dynamic obstacle avoidance around traffic.",
+            "Surface relay for UAV video and UUV acoustic telemetry.",
+            "Remote payload bay for sonar, water sampling, or rescue marker kits.",
+        ],
         components: [
             {
                 id: 1,
@@ -210,7 +259,30 @@ const platforms: Platform[] = [
         tagline: "Subsurface domain",
         description:
             "Subsurface platform engineered for deep-water mapping, acoustic telemetry relay, and precision underwater intervention tasks.",
-        image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1600&auto=format&fit=crop",
+        image: "/asset/platform-uuv.png",
+        specs: [
+            { label: "Endurance", value: "4.5 hr" },
+            { label: "Depth", value: "200 m" },
+            { label: "Speed", value: "4 kt" },
+            { label: "Payload", value: "12 kg" },
+            { label: "Nav drift", value: "<0.8%" },
+            { label: "Link", value: "25 kHz acoustic" },
+        ],
+        techStack: [
+            "ROS 2",
+            "DVL",
+            "INS fusion",
+            "Multibeam sonar",
+            "Acoustic modem",
+            "Pressure CAN",
+            "SLAM mapping",
+            "Mission replay",
+        ],
+        capabilities: [
+            "Autonomous bathymetry lanes with sonar-based obstacle avoidance.",
+            "Dead-reckoned navigation with periodic acoustic position updates.",
+            "Docking-ready power modules for rapid battery swaps between dives.",
+        ],
         components: [
             {
                 id: 1,
@@ -368,31 +440,69 @@ function ComponentSpecPanel({ item }: { item: TimelineItem }) {
 }
 
 function PlatformOverviewPanel({ platform }: { platform: Platform }) {
+    const primarySpecs = platform.specs.slice(0, 4);
+    const primaryStack = platform.techStack.slice(0, 6);
+    const primaryCapability = platform.capabilities[0];
+
     return (
-        <div className="flex h-full flex-col">
-            <div className="relative aspect-[16/10] w-full overflow-hidden">
-                <img
-                    src={platform.image}
-                    alt={platform.name}
-                    className="h-full w-full object-cover opacity-90"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-                <div className="absolute bottom-4 left-6">
-                    <p className="text-xs uppercase tracking-widest text-primary">
-                        {platform.tagline}
-                    </p>
-                    <h3 className="text-3xl font-semibold tracking-tight">
-                        {platform.name}
-                        <span className="ml-2 text-sm font-normal text-muted-foreground">
-                            {platform.fullname}
-                        </span>
-                    </h3>
-                </div>
-            </div>
-            <div className="flex flex-1 flex-col justify-between gap-4 p-6 md:p-8">
-                <p className="text-sm leading-relaxed text-muted-foreground md:text-base">
+        <div className="flex h-full flex-col gap-5 overflow-y-auto p-5 md:p-6">
+            <div className="max-w-xl">
+                <p className="text-xs uppercase tracking-widest text-primary">
+                    {platform.tagline}
+                </p>
+                <h3 className="mt-2 text-3xl font-semibold tracking-tight">
+                    {platform.name}
+                    <span className="ml-2 text-sm font-normal text-muted-foreground">
+                        {platform.fullname}
+                    </span>
+                </h3>
+                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
                     {platform.description}
                 </p>
+            </div>
+            <div>
+                <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
+                    Machine specs
+                </p>
+                <div className="grid grid-cols-2 gap-px overflow-hidden rounded-lg border border-white/10 bg-white/10">
+                    {primarySpecs.map((spec) => (
+                        <div key={spec.label} className="bg-background/95 p-3">
+                            <p className="text-[10px] uppercase tracking-widest text-muted-foreground">
+                                {spec.label}
+                            </p>
+                            <p className="mt-1 font-mono text-base text-white">
+                                {spec.value}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+
+            <div>
+                <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
+                    Onboard tech stack
+                </p>
+                <div className="flex flex-wrap gap-2">
+                    {primaryStack.map((item) => (
+                        <span
+                            key={item}
+                            className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-muted-foreground"
+                        >
+                            {item}
+                        </span>
+                    ))}
+                </div>
+            </div>
+
+            <div>
+                <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
+                    Mission profile
+                </p>
+                <div className="border-l border-primary/60 bg-white/[0.02] py-2 pl-4 text-sm leading-relaxed text-muted-foreground">
+                    {primaryCapability}
+                </div>
+            </div>
+            <div>
                 <p className="text-xs uppercase tracking-widest text-muted-foreground">
                     Click a node to inspect a component →
                 </p>
@@ -427,11 +537,11 @@ export default function HomePage() {
                             Platforms
                         </span>
                         <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-                            Three platforms. Inspect each system.
+                            Machine specs and autonomy stack.
                         </h2>
                         <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
-                            Select a platform, then click any node to view the
-                            component spec.
+                            Select a platform to compare fabricated performance specs,
+                            onboard software, sensors, and subsystem readiness.
                         </p>
                     </div>
 
@@ -460,13 +570,15 @@ export default function HomePage() {
                     </div>
 
                     {/* Two-column: orbital LEFT, model/specs RIGHT */}
-                    <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 lg:grid-cols-2">
-                        <div className="relative h-[560px] bg-background md:h-[640px]">
+                    <div className="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 lg:h-[640px] lg:grid-cols-2">
+                        <div className="relative h-[560px] bg-background md:h-[640px] lg:h-full">
                             <RadialOrbitalTimeline
                                 key={activeKey}
                                 timelineData={platform.components}
                                 hideExpandedCard
                                 onNodeSelect={setSelected}
+                                backgroundImage={platform.image}
+                                backgroundAlt={platform.fullname}
                                 className="bg-background"
                             />
                             <div className="pointer-events-none absolute left-4 top-4 font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
@@ -474,7 +586,7 @@ export default function HomePage() {
                             </div>
                         </div>
 
-                        <div className="bg-background">
+                        <div className="h-[400px] overflow-hidden bg-background lg:h-full">
                             {selected ? (
                                 <ComponentSpecPanel item={selected} />
                             ) : (

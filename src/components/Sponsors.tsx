@@ -73,6 +73,14 @@ const sponsors: Sponsor[] = [
         logoSrc: "/asset/waterlinked.jpg",
         logoClass: "bg-white p-2",
     },
+    {
+        id: "vectornav",
+        name: "VectorNav",
+        tier: "Navigation sponsor",
+        url: "https://www.vectornav.com/",
+        logoSrc: "/asset/vectornav-logo.svg",
+        logoClass: "p-2",
+    },
 ];
 
 export default function SponsorSection() {

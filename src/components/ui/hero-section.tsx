@@ -1,9 +1,7 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Menu, X, ChevronRight } from "lucide-react";
 import { useScroll, motion } from "framer-motion";
 
 const navItems = [
@@ -81,28 +79,6 @@ export function HeroSection() {
                                 platforms — engineered together, deployed together.
                             </p>
 
-                            <div className="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                                <Button
-                                    asChild
-                                    size="lg"
-                                    className="h-12 rounded-full pl-5 pr-3 text-base"
-                                >
-                                    <Link href="#platforms">
-                                        <span className="text-nowrap">View platforms</span>
-                                        <ChevronRight className="ml-1" />
-                                    </Link>
-                                </Button>
-                                <Button
-                                    asChild
-                                    size="lg"
-                                    variant="ghost"
-                                    className="h-12 rounded-full px-5 text-base hover:bg-white/5"
-                                >
-                                    <Link href="#team">
-                                        <span className="text-nowrap">Meet the team</span>
-                                    </Link>
-                                </Button>
-                            </div>
                         </div>
                     </div>
                 </section>
@@ -112,7 +88,6 @@ export function HeroSection() {
 }
 
 const HeroHeader = () => {
-    const [menuState, setMenuState] = React.useState(false);
     const [scrolled, setScrolled] = React.useState(false);
     const { scrollYProgress } = useScroll();
 
@@ -125,10 +100,7 @@ const HeroHeader = () => {
 
     return (
         <header>
-            <nav
-                data-state={menuState ? "active" : undefined}
-                className="group fixed z-50 w-full pt-2"
-            >
+            <nav className="fixed z-50 w-full pt-2">
                 <div
                     className={cn(
                         "mx-auto max-w-7xl rounded-3xl px-6 transition-all duration-300 lg:px-12",
@@ -158,15 +130,6 @@ const HeroHeader = () => {
                                 </span>
                             </Link>
 
-                            <button
-                                onClick={() => setMenuState(!menuState)}
-                                aria-label={menuState ? "Close menu" : "Open menu"}
-                                className="relative z-20 -m-2.5 -mr-4 block cursor-pointer p-2.5 lg:hidden"
-                            >
-                                <Menu className="m-auto size-6 duration-200 group-data-[state=active]:rotate-180 group-data-[state=active]:scale-0 group-data-[state=active]:opacity-0" />
-                                <X className="absolute inset-0 m-auto size-6 -rotate-180 scale-0 opacity-0 duration-200 group-data-[state=active]:rotate-0 group-data-[state=active]:scale-100 group-data-[state=active]:opacity-100" />
-                            </button>
-
                             <div className="hidden lg:block">
                                 <ul className="flex gap-8 text-sm">
                                     {navItems.map((item) => (
@@ -183,22 +146,6 @@ const HeroHeader = () => {
                             </div>
                         </div>
 
-                        <div className="mb-6 hidden w-full flex-wrap items-center justify-end space-y-8 rounded-3xl border border-white/10 bg-background p-6 shadow-2xl shadow-black/40 group-data-[state=active]:block md:flex-nowrap lg:m-0 lg:flex lg:w-fit lg:gap-6 lg:space-y-0 lg:border-transparent lg:bg-transparent lg:p-0 lg:shadow-none">
-                            <div className="lg:hidden">
-                                <ul className="space-y-6 text-base">
-                                    {navItems.map((item) => (
-                                        <li key={item.name}>
-                                            <Link
-                                                href={item.href}
-                                                className="block text-muted-foreground duration-150 hover:text-foreground"
-                                            >
-                                                {item.name}
-                                            </Link>
-                                        </li>
-                                    ))}
-                                </ul>
-                            </div>
-                        </div>
                     </motion.div>
                 </div>
             </nav>
