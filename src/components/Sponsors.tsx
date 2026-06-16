@@ -78,7 +78,7 @@ const sponsors: Sponsor[] = [
         name: "VectorNav",
         tier: "Navigation sponsor",
         url: "https://www.vectornav.com/",
-        logoSrc: "/asset/vectornav-logo.svg",
+        logoSrc: "/asset/vectornav-logo.png",
         logoClass: "p-2",
     },
 ];

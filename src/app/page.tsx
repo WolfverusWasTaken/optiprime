@@ -14,7 +14,6 @@ import {
     Activity,
     Anchor,
     Zap,
-    User,
 } from "lucide-react";
 import { HeroSection } from "@/components/ui/hero-section";
 import RadialOrbitalTimeline, {
@@ -360,19 +359,29 @@ const platforms: Platform[] = [
     },
 ];
 
-const teamMembers = [
-    { name: "John Doe", role: "Aerospace Engineer", division: "UAV" },
-    { name: "Jane Smith", role: "Flight Dynamics", division: "UAV" },
-    { name: "Alex Wong", role: "Computer Vision", division: "UAV" },
-    { name: "Sarah Connor", role: "Payload Specialist", division: "UAV" },
-    { name: "Mike Chen", role: "Naval Architect", division: "USV" },
-    { name: "Emily Davis", role: "Propulsion Lead", division: "USV" },
-    { name: "David Kim", role: "Autonomy Software", division: "USV" },
-    { name: "Chloe Zhao", role: "Systems Integration", division: "USV" },
-    { name: "Robert Fox", role: "Subsea Engineer", division: "UUV" },
-    { name: "Alice Johnson", role: "Acoustics Specialist", division: "UUV" },
-    { name: "Tom Hardy", role: "Hydrodynamics", division: "UUV" },
-    { name: "Nina Williams", role: "Embedded Systems", division: "UUV" },
+const leadership = [
+    { name: "Calwin Ang", role: "General Lead" },
+    { name: "Carl Louis", role: "Co-Lead (Development)" },
+    { name: "Hugh", role: "Co-Lead (Operations)" },
+    { name: "Yuen Tao", role: "Sub-Team Lead (UAV)" },
+    { name: "Fabian", role: "Sub-Team Lead (UUV)" },
+    { name: "Wei Lun", role: "Sub-Team Lead (USV)" },
+    { name: "Alexi", role: "Integration Lead" },
+];
+
+const teamCredits = [
+    {
+        division: "UAV",
+        members: ["Nigel", "Gen Yen", "Alicia", "Jarvis", "Glenda"],
+    },
+    {
+        division: "USV",
+        members: ["More members to be added."],
+    },
+    {
+        division: "UUV",
+        members: ["More members to be added."],
+    },
 ];
 
 function statusLabel(s: TimelineItem["status"]) {
@@ -456,9 +465,6 @@ function PlatformOverviewPanel({ platform }: { platform: Platform }) {
                         {platform.fullname}
                     </span>
                 </h3>
-                <p className="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-                    {platform.description}
-                </p>
             </div>
             <div>
                 <p className="mb-2 text-xs uppercase tracking-widest text-muted-foreground">
@@ -539,10 +545,6 @@ export default function HomePage() {
                         <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
                             Machine specs and autonomy stack.
                         </h2>
-                        <p className="max-w-2xl text-sm text-muted-foreground md:text-base">
-                            Select a platform to compare fabricated performance specs,
-                            onboard software, sensors, and subsystem readiness.
-                        </p>
                     </div>
 
                     {/* Platform tabs */}
@@ -610,28 +612,62 @@ export default function HomePage() {
                         </h2>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-3 lg:grid-cols-4">
-                        {teamMembers.map((m) => (
-                            <div
-                                key={m.name}
-                                className="group flex flex-col gap-3 bg-background p-6 transition-colors hover:bg-white/[0.02]"
-                            >
-                                <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5">
-                                    <User className="h-5 w-5 text-muted-foreground group-hover:text-primary" />
-                                </div>
-                                <div>
-                                    <h3 className="text-sm font-semibold tracking-tight">
-                                        {m.name}
-                                    </h3>
-                                    <p className="text-xs text-muted-foreground">
-                                        {m.role}
-                                    </p>
-                                </div>
-                                <span className="mt-1 text-[10px] font-medium uppercase tracking-widest text-primary/80">
-                                    {m.division} Division
-                                </span>
+                    <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/10">
+                        <div className="relative flex min-h-[280px] items-end overflow-hidden bg-background p-8">
+                            <div className="absolute inset-0 bg-dot-grid opacity-20" />
+                            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-white/[0.03]" />
+                            <div className="relative">
+                                <p className="text-xs uppercase tracking-widest text-primary">
+                                    Team photo
+                                </p>
+                                <h3 className="mt-2 text-2xl font-semibold tracking-tight">
+                                    OptiPrime 2026
+                                </h3>
                             </div>
-                        ))}
+                        </div>
+
+                        <div className="grid gap-px bg-white/10 lg:grid-cols-[1.15fr_1fr]">
+                            <div className="bg-background p-6 md:p-8">
+                                <p className="mb-5 text-xs uppercase tracking-widest text-muted-foreground">
+                                    Leads
+                                </p>
+                                <div className="grid gap-4">
+                                    {leadership.map((member) => (
+                                        <div
+                                            key={`${member.name}-${member.role}`}
+                                            className="grid gap-1 border-b border-white/10 pb-4 last:border-b-0 last:pb-0 sm:grid-cols-[180px_1fr]"
+                                        >
+                                            <h3 className="text-sm font-semibold tracking-tight text-foreground">
+                                                {member.name}
+                                            </h3>
+                                            <p className="text-sm text-muted-foreground">
+                                                {member.role}
+                                            </p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="grid gap-px bg-white/10">
+                                {teamCredits.map((group) => (
+                                    <div key={group.division} className="bg-background p-6">
+                                        <p className="mb-4 text-xs uppercase tracking-widest text-primary">
+                                            {group.division}
+                                        </p>
+                                        <ul className="grid gap-2">
+                                            {group.members.map((member) => (
+                                                <li
+                                                    key={`${group.division}-${member}`}
+                                                    className="text-sm text-muted-foreground"
+                                                >
+                                                    {member}
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </section>
 

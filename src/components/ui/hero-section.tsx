@@ -74,11 +74,6 @@ export function HeroSection() {
                                 <span className="text-primary">Prime</span>
                             </h1>
 
-                            <p className="mt-6 max-w-2xl text-balance text-base text-muted-foreground md:text-lg">
-                                We design and build fully autonomous UAV, USV, and UUV
-                                platforms — engineered together, deployed together.
-                            </p>
-
                         </div>
                     </div>
                 </section>
