@@ -20,6 +20,9 @@ import RadialOrbitalTimeline, {
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import SponsorSection from "@/components/Sponsors";
+import { leadership } from "./leadership";
+import { teamCredits } from "./teamCredits";
+import Link from "next/link";
 
 type PlatformKey = "uav" | "usv" | "uuv";
 
@@ -150,7 +153,7 @@ const platforms: Platform[] = [
     tagline: "Surface domain",
     description:
       "High-speed autonomous surface craft for waypoint navigation, dynamic obstacle avoidance, and coordinated multi-agent missions.",
-    image: "/asset/platform-usv.png",
+    image: "/asset/usv.png",
     specs: [
       { label: "Endurance", value: "33 hr" },
       { label: "Range", value: "117 km" },
@@ -256,7 +259,7 @@ const platforms: Platform[] = [
     tagline: "Subsurface domain",
     description:
       "Subsurface platform engineered for deep-water mapping, acoustic telemetry relay, and precision underwater intervention tasks.",
-    image: "/asset/platform-uuv.png",
+    image: "/asset/uuv.png",
     specs: [
       { label: "Dimensions", value: "600 x 600 x 400 mm" },
       { label: "Air weight", value: "~35 kg" },
@@ -353,70 +356,6 @@ const platforms: Platform[] = [
         status: "in-progress",
         energy: 65,
       },
-    ],
-  },
-];
-
-const leadership = [
-  { name: "Calwin Ang Wei Xuan", role: "General Lead" },
-  { name: "Carl Louis", role: "Co-Lead (Development)" },
-  { name: "Chow Xiong Yong Hugh", role: "Co-Lead (Operations)" },
-  { name: "Nigel Loke Yue Yang", role: "Comms/Electrical Lead" },
-  { name: "Alexi Kizhakkepurathu George", role: "Integration Lead" },
-  { name: "Toh Jia Jun, Fabian", role: "Sub-Team Lead (UUV)" },
-  { name: "Jaison Tan Yann Hann", role: "Sub-Team Lead (USV)" },
-  { name: "Ng Yuen Tao", role: "Sub-Team Lead (UAV)" },
-];
-
-const teamCredits: Array<{
-  division: string;
-  members: Array<{ name: string; role?: string }>;
-}> = [
-  {
-    division: "UAV",
-    members: [
-      { name: "Jarvis Leow Zhensheng", role: "Mechanical" }, //
-      { name: "Tan Gen Yen", role: "Mechanical" }, //
-      { name: "Ramonito Jhon Pines Wong", role: "Mechanical" }, //
-      { name: "Alicia Wong Yuan Qi", role: "Mechanical" }, //
-      { name: "Glenda Chong Yi Xuan", role: "Mechanical" }, //
-      { name: "Goh Xin Yue", role: "Mechanical" }, //
-      { name: "Nigel Loke Yue Yang", role: "Electrical" }, //
-      { name: "Muas Jabar Bin Abdullah", role: "software" }, //
-      { name: "Nicholas Wei Jian Chiang", role: "Advisor/Finance" },
-    ],
-  },
-  {
-    division: "USV",
-    members: [
-      { name: "Jaison Tan", role: "Sub-Team Lead" }, //
-      { name: "Ng Wei Lun", role: "Mechanical" }, //
-      { name: "Cheng Xi", role: "Mechanical" }, //
-      { name: "Alvin To Yie Kwan", role: "Software" }, //
-      { name: "Lua Yan Ying", role: "Mechanical" }, //
-      { name: "Matthias Chua Jia Jun", role: "Software" }, //
-      { name: "Dmitrii Aparin", role: "System Developer" }, //
-    ],
-  },
-  {
-    division: "UUV",
-    members: [
-      { name: "Fabian", role: "Sub-Team Lead" }, //
-      { name: "Aydil", role: "Software" }, //
-      { name: "Sherwin", role: "Software" }, //
-      { name: "Clifton", role: "Software" }, //
-      { name: "Yan Shan", role: "Software" }, //
-      { name: "Brian Ong Wei Rong ", role: "Mechanical" }, //
-    ],
-  },
-  {
-    division: "Staff",
-    members: [
-      { name: "Yun Mei Ang", role: "Advisor" },
-      { name: "Voon Ee How", role: "Advisor" },
-      { name: "Nicholas Wei Jian Chiang", role: "Advisor/Finance" },
-      { name: "Dmitrii Aparin", role: "USV Craft System Developer" },
-      { name: "Peng Cheng Wang", role: "Advisor" },
     ],
   },
 ];
@@ -568,8 +507,6 @@ export default function HomePage() {
 
   return (
     <>
-      <HeroSection />
-
       <div className="flex flex-col gap-32 pb-24">
         {/* Platforms */}
         <section
@@ -583,6 +520,12 @@ export default function HomePage() {
             <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
               Machine specs and autonomy stack.
             </h2>
+            <Link
+              href={"/documentation"}
+              className="text-sm text-muted-foreground underline cursor-pointer hover:opacity-80 font-medium tracking-tight"
+            >
+              Read More About Each Platform Here {">>>"}
+            </Link>
           </div>
 
           {/* Platform tabs */}
